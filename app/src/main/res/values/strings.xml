@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">QuiZ</string>
+    <string name="title_activity_main">QuiZ App by Sidorovich</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="BUTTON_LABEL_START_TEST">Start Testing</string>
+    <string name="BUTTON_LABEL_EXIT">Close app</string>
+    <string name="BUTTON_LABEL_SHOW_RESULT">Show Result</string>
+
+    <string name="ACTIVITY_LABEL_TESTING">Testing…</string>
+    <string name="ACTIVITY_LABEL_TESTING_RESULT">Testing Result</string>
+
+    <string name="BUTTON_LABEL_MAKE_YOUR_CHOICE_1">Answer 1</string>
+    <string name="BUTTON_LABEL_MAKE_YOUR_CHOICE_2">Answer 2</string>
+    <string name="BUTTON_LABEL_MAKE_YOUR_CHOICE_3">Answer 3</string>
+    <string name="BUTTON_LABEL_MAKE_YOUR_CHOICE_4">Answer 4</string>
+
+    <string name="LABEL_HELP_MESSAGE_PRESS_ANY_BUTTON">PRESS ANY BUTTON</string>
+
+    <string name="LABEL_SCORE">Your score:</string>
 </resources>
