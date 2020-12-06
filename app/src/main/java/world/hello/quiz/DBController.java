@@ -71,78 +71,77 @@ public class DBController extends SQLiteOpenHelper {
 
     private void doPrepareQuestions(SQLiteDatabase db){
         List<String> Questions = new ArrayList<String>();
-        Questions.add("Что не относится к основным принципам ООП?");
-        Questions.add("Как общаются между собой объекты внутри программы?");
-        Questions.add("Чем описывается объект в ООП?");
-        Questions.add("Что такое класс в ООП?");
-        Questions.add("В чем разница между идентичностью и равенством?");
-        Questions.add("В чем разница между объектом и классом?");
-        Questions.add("Что такое инкапсуляция?");
-        Questions.add("Чем представляется программа в ООП?");
-        Questions.add("Какой из принципов в ООП говорит о необходимости отказаться от безосновательного повторения кода?");
-        Questions.add("Как в терминах ООП называется объект, состояние которого может быть изменено после создания?");
-        //Questions.add("Question 1");
-        //Questions.add("Question 2");
+
         List<String> Answers1 = new ArrayList<String>();
         List<String> Answers2 = new ArrayList<String>();
         List<String> Answers3 = new ArrayList<String>();
         List<String> Answers4 = new ArrayList<String>();
         List<Integer> CorrectAnswers = new ArrayList<Integer>();
 
+        Questions.add("Что не относится к основным принципам ООП?");
         Answers1.add("Импликация");
         Answers2.add("Инкапсуляция");
-        Answers3.add("Агрегация");
+        Answers3.add("Полиморфизм");
         Answers4.add("Все относится");
-        CorrectAnswers.add(2);
+        CorrectAnswers.add(1);
 
-        Answers1.add("По средствам отправки сообщений");
+        Questions.add("Как общаются между собой объекты внутри программы?");
+        Answers1.add("По средствам отправки уведомлений");
         Answers2.add("По средствам отправки HTTP-запросов");
         Answers3.add("По средствам отправки SQL-запросов");
-        Answers4.add("По средствам отправки уведомлений");
+        Answers4.add("По средствам отправки сообщений");
+        CorrectAnswers.add(4);
+
+        Questions.add("Чем описывается объект в ООП?");
+        Answers1.add("Состоянием");
+        Answers2.add("Наследованием");
+        Answers3.add("Композицией");
+        Answers4.add("Конструктором");
         CorrectAnswers.add(1);
 
-        Answers1.add("Состояние");
-        Answers2.add("Наследование");
-        Answers3.add("Композиция");
-        Answers4.add("Коструктор");
-        CorrectAnswers.add(1);
-
-        Answers1.add("Класс это чертёж по которому может быть создан объект");
-        Answers2.add("Класс это специальный тип данных");
+        Questions.add("Что такое класс в ООП?");
+        Answers1.add("Класс это специальный тип данных");
+        Answers2.add("Класс это чертёж по которому может быть создан объект");
         Answers3.add("Класс используется для выделения памяти");
-        Answers4.add("Ничего");
-        CorrectAnswers.add(1);
+        Answers4.add("Ничего из перечисленного");
+        CorrectAnswers.add(2);
 
+        Questions.add("В чем разница между идентичностью и равенством?");
         Answers1.add("У объектов одинаковые поля, а равенство – что они (объекты) содержат одинаковые данные");
         Answers2.add("Две ссылки указывают на один и тот же объект, а равенство – что они (объекты) содержат одинаковые данные");
         Answers3.add("Объекты являются экземплярами одного и того же класса, а равенство – что они (объекты) содержат одинаковые данные");
         Answers4.add("У объектов есть общий не абстрактный предок, а равенство – любой общий предок");
-        CorrectAnswers.add(1);
+        CorrectAnswers.add(2);
 
+        Questions.add("В чем разница между объектом и классом?");
         Answers1.add("Класс - это экземпляр объекта");
-        Answers2.add("Классом всегда является более общее понятие, а объектом – более кон-кретное");
+        Answers2.add("Классом всегда является более общее понятие, а объектом – более конкретное");
         Answers3.add("Объектом всегда является более общее понятие, а классом – более конкретное.");
         Answers4.add("Класс – это исходный код, а объект – скомпилированный и выполняемый код");
         CorrectAnswers.add(2);
 
+        Questions.add("Что такое инкапсуляция?");
         Answers1.add("Сокрытие реализации");
         Answers2.add("Сокрытие данных");
         Answers3.add("Объединение кода и данных внутри объекта");
         Answers4.add("Изменение поведения дочерних объектов");
         CorrectAnswers.add(3);
 
+        Questions.add("Чем представляется программа в ООП?");
         Answers1.add("Набор объектов");
         Answers2.add("Последовательность термов");
         Answers3.add("Поседовательность функций");
         Answers4.add("События и их обработчики");
         CorrectAnswers.add(1);
 
+        Questions.add("Какой из принципов в ООП говорит о необходимости отказаться от безосновательного повторения кода?");
         Answers1.add("SOLID");
         Answers2.add("DRY");
         Answers3.add("KISS");
         Answers4.add("GRASP");
         CorrectAnswers.add(2);
-//
+
+        Questions.add("Как в терминах ООП называется объект, состояние которого может быть изменено после создания?");
         Answers1.add("static");
         Answers2.add("mutable");
         Answers3.add("internal");
