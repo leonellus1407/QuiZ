@@ -25,13 +25,14 @@
         android:id="@+id/startTestButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="300dp"
         android:onClick="doStartTesting"
         android:text="@string/BUTTON_LABEL_START_TEST"
         android:textSize="30sp"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/closeAppButton"
         app:layout_constraintEnd_toEndOf="@+id/closeAppButton"
-        app:layout_constraintStart_toStartOf="@+id/closeAppButton" />
+        app:layout_constraintStart_toStartOf="@+id/closeAppButton"
+        app:layout_constraintTop_toBottomOf="@+id/header_text" />
 
     <Button
         android:id="@+id/closeAppButton"
