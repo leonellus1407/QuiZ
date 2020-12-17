@@ -16,8 +16,4 @@ public class Question {
         this.answer4 = answer4;
         this.correctAnswer = correctAnswer;
     }
-
-    public Boolean isAnswerCorrect(Integer pickedAnswer){
-        return pickedAnswer == this.correctAnswer;
-    }
 }

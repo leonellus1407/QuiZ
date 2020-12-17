@@ -13,7 +13,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -107,9 +109,9 @@ public class Testing extends AppCompatActivity {
         return questionNumber + "/" + numberOfQuestions;
     }
 
-    private Button getButton(int buttonNumber){
+    private Button getButton(int correctAnswer){
         Button index = null;
-        switch (buttonNumber) {
+        switch (correctAnswer) {
             case 1:
                 index = this.btn_choice1;
                 break;
@@ -155,6 +157,16 @@ public class Testing extends AppCompatActivity {
     }
 
     public void doCloseTesting(View view){
+        Fragment frag1 = getSupportFragmentManager().findFragmentById(R.id.fragment);
+        EditText username = frag1.getView().findViewById(R.id.I_Username);
+        String enteredUsername = username.getText().toString();
+        if(enteredUsername.length() == 0) {
+            Toast.makeText(getApplicationContext(), R.string.ERROR_MESSAGE_SHORT_USERNAME, Toast.LENGTH_LONG).show();
+            return;
+        }
+        DBController dbController = new DBController(getApplicationContext());
+        dbController.addNewResult(enteredUsername, this.numberOfCorrectAnswers, this.numberOfQuestions);
+
         finish();
     }
 }

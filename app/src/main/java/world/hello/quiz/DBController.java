@@ -6,9 +6,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import androidx.collection.ArrayMap;
+
 import java.io.Console;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DBController extends SQLiteOpenHelper {
     public DBController(Context context) {
@@ -17,7 +21,7 @@ public class DBController extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE `" + DBConstants.TABLE_QUESTION_NAME+ "` ( " +
+        db.execSQL("CREATE TABLE IF NOT EXISTS `" + DBConstants.TABLE_QUESTION_NAME+ "` ( " +
                 " `"+ DBConstants.TABLE_QUESTION_FIELD_ID+"` INT NOT NULL, " +
                 " `"+ DBConstants.TABLE_QUESTION_FIELD_LABEL +"` TEXT(255) NOT NULL, " +
                 " `"+ DBConstants.TABLE_QUESTION_FIELD_ANSWER1+"` TEXT(255) NOT NULL, " +
@@ -26,14 +30,22 @@ public class DBController extends SQLiteOpenHelper {
                 " `"+ DBConstants.TABLE_QUESTION_FIELD_ANSWER4+"` TEXT(255) NOT NULL, " +
                 " `"+ DBConstants.TABLE_QUESTION_FIELD_CORRECTANSWER+"` INT NOT NULL, " +
                 " PRIMARY KEY (`"+DBConstants.TABLE_QUESTION_FIELD_ID+"`))");
+        db.execSQL("CREATE TABLE IF NOT EXISTS `" + DBConstants.TABLE_RESULT_NAME+ "` ( " +
+                " `"+ DBConstants.TABLE_RESULT_FIELD_ID+"` INT NOT NULL, " +
+                " `"+ DBConstants.TABLE_RESULT_FIELD_NAME +"` TEXT(255) NOT NULL, " +
+                " `"+ DBConstants.TABLE_RESULT_FIELD_CORRECT_ANSWER+"` INT NOT NULL, " +
+                " `"+ DBConstants.TABLE_RESULT_FIELD_TOTAL_QUESTIONS+"` INT NOT NULL, " +
+                " PRIMARY KEY (`"+DBConstants.TABLE_RESULT_FIELD_ID+"`))");
         this.doPrepareQuestions(db);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("drop table if exists " + DBConstants.TABLE_QUESTION_NAME);
+        db.execSQL("drop table if exists " + DBConstants.TABLE_RESULT_NAME);
     }
 
+    //TABLE METHODS
     public List<Question> getQuestions(){
         SQLiteDatabase db = this.getWritableDatabase();
         List<Question> returnStructure = new ArrayList<>();
@@ -66,6 +78,7 @@ public class DBController extends SQLiteOpenHelper {
             if (returnStructure.size() > 0) doit = false;
             else doPrepareQuestions(db);
         }
+        db.close();
         return returnStructure;
     }
 
@@ -161,4 +174,41 @@ public class DBController extends SQLiteOpenHelper {
         }
 
     }
+
+    //RESULT METHODS
+    public List<String> getAllResults(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<String> returnStructure = new ArrayList<>();
+        Cursor dbCursor = db.query(DBConstants.TABLE_RESULT_NAME, null, null, null, null, null, null);
+        dbCursor.moveToFirst();
+        Integer index_id = dbCursor.getColumnIndex(DBConstants.TABLE_RESULT_FIELD_ID);
+        Integer index_name = dbCursor.getColumnIndex(DBConstants.TABLE_RESULT_FIELD_NAME);
+        Integer index_correctans = dbCursor.getColumnIndex(DBConstants.TABLE_RESULT_FIELD_CORRECT_ANSWER);
+        Integer index_total = dbCursor.getColumnIndex(DBConstants.TABLE_RESULT_FIELD_TOTAL_QUESTIONS);
+        while (!dbCursor.isAfterLast()){
+            returnStructure.add(dbCursor.getString(index_name));
+            returnStructure.add(dbCursor.getInt(index_correctans) + "/" + dbCursor.getInt(index_total));
+            dbCursor.moveToNext();
+        }
+        db.close();
+        return returnStructure;
+    }
+
+    public void addNewResult(String name, int correctans, int totalquestions){
+        Integer indexOfLastElement = 0;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor dbCursor = db.query(DBConstants.TABLE_RESULT_NAME, new String[]{DBConstants.TABLE_RESULT_FIELD_ID}, null, null, null, null, DBConstants.TABLE_RESULT_FIELD_ID + " DESC", "1");
+        dbCursor.moveToFirst();
+        Integer index_id = dbCursor.getColumnIndex(DBConstants.TABLE_RESULT_FIELD_ID);
+        if(!dbCursor.isAfterLast()) indexOfLastElement = dbCursor.getInt(index_id) + 1;
+
+        ContentValues values = new ContentValues();
+        values.put(DBConstants.TABLE_RESULT_FIELD_ID, indexOfLastElement);
+        values.put(DBConstants.TABLE_RESULT_FIELD_NAME ,name);
+        values.put(DBConstants.TABLE_RESULT_FIELD_CORRECT_ANSWER ,correctans);
+        values.put(DBConstants.TABLE_RESULT_FIELD_TOTAL_QUESTIONS ,totalquestions);
+        db.insert(DBConstants.TABLE_RESULT_NAME, null, values);
+        db.close();
+    }
+
 }

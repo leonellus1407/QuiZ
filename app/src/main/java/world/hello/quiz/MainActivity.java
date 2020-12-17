@@ -24,6 +24,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void doShowResult(View view){
+        Intent intent = new Intent(MainActivity.this, ShowResultActivity.class);
+        startActivity(intent);
+    }
+
     public void doTerminateApp(View view){
         finish();
         System.exit(0);

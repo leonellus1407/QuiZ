@@ -20,4 +20,14 @@
     <string name="LABEL_HELP_MESSAGE_PRESS_ANY_BUTTON">PRESS ANY BUTTON</string>
 
     <string name="LABEL_SCORE">Your score:</string>
+
+    <string name="HINT_USERNAME_ENTER">Enter your username</string>
+
+    <string name="ERROR_MESSAGE_SHORT_USERNAME">Your username is too short. Please, try again.</string>
+    <string name="title_activity_show_result">ShowResultActivity</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
 </resources>

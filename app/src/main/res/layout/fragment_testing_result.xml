@@ -30,4 +30,17 @@
         app:layout_constraintEnd_toEndOf="@+id/resultLabel"
         app:layout_constraintStart_toStartOf="@+id/resultLabel"
         app:layout_constraintTop_toBottomOf="@+id/resultLabel" />
+
+    <EditText
+        android:id="@+id/I_Username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="@string/HINT_USERNAME_ENTER"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/resultLabel"
+        app:layout_constraintStart_toStartOf="@+id/resultLabel"
+        app:layout_constraintTop_toBottomOf="@+id/score" />
 </androidx.constraintlayout.widget.ConstraintLayout>

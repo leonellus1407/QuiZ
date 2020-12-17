@@ -35,6 +35,19 @@
         app:layout_constraintTop_toBottomOf="@+id/header_text" />
 
     <Button
+        android:id="@+id/showResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="doShowResult"
+        android:text="@string/ACTIVITY_LABEL_TESTING_RESULT"
+        android:textSize="18sp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/closeAppButton"
+        app:layout_constraintEnd_toEndOf="@+id/closeAppButton"
+        app:layout_constraintStart_toStartOf="@+id/closeAppButton"
+        app:layout_constraintTop_toBottomOf="@+id/startTestButton" />
+
+    <Button
         android:id="@+id/closeAppButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
